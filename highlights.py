@@ -57,7 +57,7 @@ def get_highlights(category: str, top_k: int = 5) -> List[Dict]:
             "score": score,
             "frequency": representative["source"],
             "title": representative["title"],
-            "summary": representative["summary"],
+            "summary": representative["summary"].replace("Here is a 2-3 sentence summary of the news article:", "").strip(),
             "source_urls": [a["url"] for a in articles],
             "author": representative.get("author"),
             "published_date": representative.get("published")[:10] ,

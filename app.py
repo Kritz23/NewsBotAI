@@ -45,9 +45,9 @@ if not highlights:
     st.warning("No highlights available.")
 else:
     for i, item in enumerate(highlights, 1):
-        with st.expander(f"#{i}. {item['title']}", expanded=True):
-            clean_summary = item['summary'].replace("Here is a 2-3 sentence summary of the news article:", "").strip()
-            st.markdown(f"**📝 Summary:** {clean_summary}")
+        with st.expander(f"📰 Trending #{i}", expanded=True): 
+            st.markdown(f"**📝 Title:** {item['title']}")
+            st.markdown(f"**Summary:** {item['summary']}")
             st.markdown(f"**👤 Author:** {item.get('author', 'N/A')} | **🗓️ Date:** {item.get('published_date', 'N/A')}")
             st.markdown(f"**📡 Sources ({item['frequency']}):**")
             for url in item["source_urls"]:

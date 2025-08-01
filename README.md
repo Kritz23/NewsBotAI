@@ -17,23 +17,23 @@ Chatbot with RAG using ChromaDB and Groq (Llama 4)
 
 ## 📦 Project Structure
 
-NewsBotAI/
-├── app.py # Streamlit UI
-├── scraper.py # Extracts articles
-├── process_articles.py # Classification, summarization, clustering
-├── highlights.py # Highlight ranking logic
-├── chatbot.py # RAG chatbot pipeline
-├── prompts.py # LLM prompt templates
-├── utils/
-│ ├── classification.py
-│ ├── summarizer.py
-│ └── clustering.py
-├── data/
-│ ├── articles.json
-│ └── articles_enriched.json
-├── vector_store/ # ChromaDB persistent folder
-├── .env # API keys
-└── requirements.txt
+NewsBotAI/ <br/>
+├── app.py # Streamlit UI <br/>
+├── scraper.py # Extracts articles <br/>
+├── process_articles.py # Classification, summarization, clustering <br/>
+├── highlights.py # Highlight ranking logic <br/>
+├── chatbot.py # RAG chatbot pipeline <br/>
+├── prompts.py # LLM prompt templates <br/>
+├── utils/ <br/>
+│ ├── classification.py <br/>
+│ ├── summarizer.py <br/>
+│ └── clustering.py <br/>
+├── data/ <br/>
+│ ├── articles.json <br/>
+│ └── articles_enriched.json <br/>
+├── vector_store/ # ChromaDB persistent folder <br/>
+├── .env # API keys <br/>
+└── requirements.txt <br/>
 
 ---
 
@@ -103,7 +103,7 @@ This system is composed of five coordinated components that work together to scr
 1. **Data Acquisition**
     - NewsLLM uses a custom Python-based web scraper (scraper.py) to gather fresh news articles from Australian media outlets.
     - Topics are predefined (sports, lifestyle, music, finance) and scraped individually from .au domains like:
-    - abc.net.au, 7news.com.au, theguardian.com/au, etc.
+    - smh.com.au, news.com.au, theguardian.com/au, etc.
     - The scraper retrieves up to N results per domain per topic, ensuring broad coverage across outlets.
     - Output is saved to data/articles.json.
 

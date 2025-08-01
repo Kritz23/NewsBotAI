@@ -173,7 +173,7 @@ class NewsScraperPipeline:
             'a[href*="/finance/"]',
             'a[href*="/banking-and-finance/"]',
             'a[href*="/entertainment/"]',
-            'a[href*="/culture/"]',
+            'a[href*="/music/"]',
             '.story-block a',
             '.article-link',
             '.headline a',
