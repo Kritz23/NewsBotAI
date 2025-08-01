@@ -1,11 +1,10 @@
 # app.py
 
 import streamlit as st
-from scraper import run_news_pipeline
+from scraper import NewsScraperPipeline
 from highlights import get_highlights
 from process_articles import main as process_articles_main
 from chatbot import build_vector_db
-import time
 import chatbot
 
 st.set_page_config(page_title="Daily News Highlights", layout="wide")
@@ -21,22 +20,20 @@ st.sidebar.header("🧠 Run Pipelines")
 # Run Step 1: Scraper
 if st.sidebar.button("🔁 Run Scraper"):
     with st.spinner("Scraping news..."):
-        scraper = NewsScraper()
-        results = scraper.run_news_pipeline()
-        scraper.save_to_json(results)
+        scraper = NewsScraperPipeline()
+        raw_articles = scraper.run_pipeline()
+        filtered_articles = scraper.filter_articles(raw_articles)
+        scraper.save_articles(filtered_articles)
         st.success("✅ Scraper complete. Articles saved.")
-        for topic, articles in results.items():
-            st.markdown(f"- **{topic.title()}**: {len(articles)} articles")
+        st.markdown(f"- **Total Articles Scraped:** {len(raw_articles)}")
+        st.markdown(f"- **After Filtering:** {len(filtered_articles)}")
 
 # Run Step 2: Process articles
 if st.sidebar.button("⚙️ Process Articles"):
-    with st.spinner("Classifying, summarizing, clustering and stored in DB."):
+    with st.spinner("Classifying, summarizing, clustering and storing in DB..."):
         process_articles_main()
         build_vector_db(force=True)
         st.success("✅ Article processing complete. Chatbot memory updated.")
-
-# Optional: Date filter (stub only - not wired to backend yet)
-# st.sidebar.date_input("Date", value=datetime.date.today())
 
 # --- Load Highlights ---
 highlights = get_highlights(category)

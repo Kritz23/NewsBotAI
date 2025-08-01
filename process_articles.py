@@ -11,22 +11,11 @@ from utils.clustering import cluster_articles
 INPUT_PATH = Path("data/articles.json")
 OUTPUT_PATH = Path("data/articles_enriched.json")
 
-VALID_TOPICS = {"sports", "lifestyle", "music", "finance"}
-
 def load_articles():
     if not INPUT_PATH.exists():
         raise FileNotFoundError(f"Input file not found: {INPUT_PATH}")
     with open(INPUT_PATH, "r", encoding="utf-8") as f:
-        data = json.load(f)
-
-    # Flatten structure from topic -> [articles] to a single list
-    all_articles = []
-    for topic, articles in data.items():
-        for article in articles:
-            # Ensure topic is included in article (in case it's missing)
-            article["topic"] = topic
-            all_articles.append(article)
-    return all_articles
+        return json.load(f)
 
 def save_articles(articles):
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -40,13 +29,13 @@ def enrich_articles(articles):
     for article in tqdm(articles, desc="Enriching"):
         text = article.get("content", "")
 
-        # Classify topic if missing or invalid
+        # Add category if not already present or invalid
         category = article.get("topic", "").lower()
-        if category not in VALID_TOPICS:
+        if category not in {"sports", "lifestyle", "music", "finance"}:
             category = classify_article(text)
             article["topic"] = category
 
-        # Summarize content
+        # Summarize
         article["summary"] = summarize_article(text)
 
         enriched.append(article)
