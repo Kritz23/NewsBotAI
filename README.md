@@ -86,19 +86,16 @@ Ask follow-up questions in the chat interface below the highlights.
 
 
 ## 👨‍💻 Built with
-Streamlit
-ChromaDB
-Groq
-Sentence Transformers
-BeautifulSoup
+BeautifulSoup </br>
+ChromaDB </br>
+Groq </br>
+Sentence Transformers </br>
+Streamlit </br>
+
 
 ## How NewsBotAI Works
 
 This system is composed of five coordinated components that work together to scrape, process, and interact with real-world news in a contextual, AI-powered way.
-
-<p align="center">
-  <img src="resources/block.png" width="90%">
-</p>
 
 1. **Data Acquisition**
     - NewsLLM uses a custom Python-based web scraper (scraper.py) to gather fresh news articles from Australian media outlets.
@@ -122,7 +119,7 @@ This system is composed of five coordinated components that work together to scr
     - These summaries form a context window for answering the user's question.
 
 4. **Output Generation**
-    - The structured prompt and context are sent to the Groq API, using the powerful Mixtral-8x7B model.
+    - The structured prompt and context are sent to the Groq API, using the Llama 4 Scout 17B 16E model which offers a strong balance between quality and latency.
     - The model generates a natural, grounded response with:
         - Key takeaways from relevant articles
         - Comparisons across sources
